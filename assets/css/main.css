@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── 사이버펑크 CSS 변수 ─────────────────────────────── */
+:root {
+  --cyber-pink:  255, 0, 118;    /* #FF0076 */
+  --cyber-green: 57, 255, 20;    /* #39FF14 */
+  --cyber-red:   255, 49, 87;    /* #FF3157 */
+  --cyber-amber: 255, 170, 0;    /* #FFAA00 */
+}
+
+@layer base {
+  html {
+    background-color: #06060A;
+    color: #E8E6F0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Share Tech Mono', 'JetBrains Mono', ui-monospace, monospace;
+    background-color: #06060A;
+  }
+
+  /* 스크롤바 */
+  ::-webkit-scrollbar { width: 3px; height: 3px; }
+  ::-webkit-scrollbar-track { background: #06060A; }
+  ::-webkit-scrollbar-thumb { background: rgba(255, 0, 118, 0.4); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 0, 118, 0.7); }
+}
+
+@layer components {
+
+  /* ── 카드 ─────────────────────────────────────────── */
+  .card {
+    background: #0A0A10;
+    border: 1px solid rgba(255, 0, 118, 0.2);
+    border-radius: 0;
+    padding: 1.25rem;
+    box-shadow: inset 0 0 40px rgba(255, 0, 118, 0.015);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .card:hover {
+    border-color: rgba(255, 0, 118, 0.45);
+    box-shadow: 0 0 20px rgba(255, 0, 118, 0.06),
+                inset 0 0 40px rgba(255, 0, 118, 0.025);
+  }
+
+  /* 강조 카드 */
+  .card-accent {
+    background: #0A0A10;
+    border: 1px solid rgba(255, 0, 118, 0.4);
+    border-left: 2px solid #FF0076;
+    border-radius: 0;
+    padding: 1.25rem;
+    box-shadow: 0 0 16px rgba(255, 0, 118, 0.07),
+                inset 0 0 30px rgba(255, 0, 118, 0.025);
+  }
+
+  /* ── 가격 표시 ─────────────────────────────────────── */
+  .price-display {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── 용어 번역기 트리거 ─────────────────────────────── */
+  .term-highlight {
+    position: relative;
+    border-bottom: 1px solid rgba(255, 0, 118, 0.7);
+    color: #FF4DA6;
+    cursor: help;
+    transition: color 0.15s, text-shadow 0.15s;
+  }
+
+  .term-highlight:hover {
+    color: #FF0076;
+    text-shadow: 0 0 8px rgba(255, 0, 118, 0.6);
+  }
+
+  /* ── 상승/하락 배지 ─────────────────────────────────── */
+  .badge-up {
+    color: #39FF14;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    padding: 0.1rem 0.5rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.15);
+  }
+
+  .badge-down {
+    color: #FF3157;
+    background: rgba(255, 49, 87, 0.08);
+    border: 1px solid rgba(255, 49, 87, 0.4);
+    padding: 0.1rem 0.5rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 8px rgba(255, 49, 87, 0.15);
+  }
+
+  .badge-neutral {
+    color: rgba(232, 230, 240, 0.4);
+    background: rgba(232, 230, 240, 0.04);
+    border: 1px solid rgba(232, 230, 240, 0.1);
+    padding: 0.1rem 0.5rem;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── 입력 필드 ─────────────────────────────────────── */
+  .input-base {
+    background: rgba(255, 0, 118, 0.03);
+    border: 1px solid rgba(255, 0, 118, 0.3);
+    border-radius: 0;
+    padding: 0.5rem 0.75rem;
+    color: #E8E6F0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .input-base::placeholder {
+    color: rgba(255, 0, 118, 0.35);
+  }
+
+  .input-base:focus {
+    outline: none;
+    border-color: #FF0076;
+    box-shadow: 0 0 0 2px rgba(255, 0, 118, 0.08),
+                0 0 20px rgba(255, 0, 118, 0.1);
+  }
+
+  /* ── 학습 가이드 신호 카드 ──────────────────────────── */
+  .signal-positive {
+    background: rgba(57, 255, 20, 0.04);
+    border: 1px solid rgba(57, 255, 20, 0.15);
+    border-left: 2px solid #39FF14;
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+  }
+
+  .signal-negative {
+    background: rgba(255, 49, 87, 0.04);
+    border: 1px solid rgba(255, 49, 87, 0.15);
+    border-left: 2px solid #FF3157;
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+  }
+
+  .signal-warning {
+    background: rgba(255, 170, 0, 0.04);
+    border: 1px solid rgba(255, 170, 0, 0.2);
+    border-left: 2px solid #FFAA00;
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+  }
+
+  .signal-neutral {
+    background: rgba(255, 0, 118, 0.02);
+    border: 1px solid rgba(255, 0, 118, 0.12);
+    border-left: 2px solid rgba(255, 0, 118, 0.5);
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+  }
+
+  /* ── 지표 수치 셀 ──────────────────────────────────── */
+  .indicator-cell {
+    background: #080809;
+    border: 1px solid rgba(255, 0, 118, 0.18);
+    border-radius: 0;
+    padding: 0.75rem;
+    transition: border-color 0.15s;
+  }
+
+  .indicator-cell:hover {
+    border-color: rgba(255, 0, 118, 0.4);
+    box-shadow: 0 0 10px rgba(255, 0, 118, 0.05);
+  }
+
+  /* ── 라이브 인디케이터 ────────────────────────────── */
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #39FF14;
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.9);
+    animation: live-dot 1.5s ease-in-out infinite;
+  }
+
+  /* ── 섹션 라벨 ─────────────────────────────────────── */
+  .section-label {
+    font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #FF0076;
+    -webkit-text-fill-color: #FF0076;
+    background: none;
+  }
+
+  /* ── 텍스트 강조 ──────────────────────────────────── */
+  .text-gradient {
+    color: #FF0076;
+    -webkit-text-fill-color: #FF0076;
+    background: none;
+  }
+
+  /* ── 구분선 ───────────────────────────────────────── */
+  .divider {
+    border: none;
+    height: 1px;
+    background: rgba(255, 0, 118, 0.2);
+  }
+
+  /* ── 스탯 바 (사이버펑크 스타일) ─────────────────── */
+  .stat-bar-track {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.06);
+    width: 100%;
+  }
+
+  .stat-bar-fill-green {
+    height: 100%;
+    background: #39FF14;
+    box-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+    transition: width 0.4s ease;
+  }
+
+  .stat-bar-fill-red {
+    height: 100%;
+    background: #FF3157;
+    box-shadow: 0 0 6px rgba(255, 49, 87, 0.6);
+    transition: width 0.4s ease;
+  }
+
+  .stat-bar-fill-pink {
+    height: 100%;
+    background: #FF0076;
+    box-shadow: 0 0 6px rgba(255, 0, 118, 0.6);
+    transition: width 0.4s ease;
+  }
+
+  .stat-bar-fill-amber {
+    height: 100%;
+    background: #FFAA00;
+    box-shadow: 0 0 6px rgba(255, 170, 0, 0.6);
+    transition: width 0.4s ease;
+  }
+
+  /* ── 페이지 전환 애니메이션 ────────────────────────── */
+  .page-enter-active,
+  .page-leave-active {
+    transition: opacity 0.12s ease;
+  }
+
+  .page-enter-from,
+  .page-leave-to {
+    opacity: 0;
+  }
+}
+
+/* ── 유틸리티 ──────────────────────────────────────── */
+@layer utilities {
+  .text-glow-accent {
+    text-shadow: 0 0 10px rgba(255, 0, 118, 0.7);
+  }
+
+  .text-glow-up {
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
+  }
+
+  .text-glow-down {
+    text-shadow: 0 0 10px rgba(255, 49, 87, 0.7);
+  }
+
+  /* 사이버펑크: 핑크 텍스트 */
+  .cyber-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 0, 118, 0.7);
+  }
+}
